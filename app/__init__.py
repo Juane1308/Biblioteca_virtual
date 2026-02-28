@@ -17,9 +17,16 @@ def create_app():
     from app.routes.main_routes import main_routes
     app.register_blueprint(main_routes)
 
-    from app.models.usuario import Usuario
+  
 
     with app.app_context():
+        
+        from app.models.usuario import Usuario
+        from app.models.autor import Autor
+        from app.models.libro import Libro
+        from app.models.prestamo import Prestamo
+        from app.models.rol import Rol
+
         db.create_all()
 
     return app
