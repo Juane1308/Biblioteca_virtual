@@ -1,8 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 main_routes = Blueprint('main', __name__)
 
-@main_routes.route('/')
-def index():
-    return "<h1>Biblioteca Virtual funcionando 📚</h1>"
+@main_routes.route("/")
+def inicio():
+    return render_template("inicio.html")
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Biblioteca Virtual{% endblock %}</title>
+
+    <!-- Aquí podrías conectar tu CSS más adelante -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Título general del sistema -->
+    <h1>📚 Biblioteca Virtual</h1>
+
+    <!-- Zona para mostrar mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <!-- category puede ser success, danger, etc -->
+                    <li><strong>{{ message }}</strong></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Aquí se inyecta el contenido específico de cada página -->
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
