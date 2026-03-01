@@ -2,6 +2,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash # Importamos herramientas necesarias de Flask
 from app import db # Importamos la base de datos
 from app.models.usuario import Usuario # Importamos el modelo Usuario
+from app.models.rol import Rol  # Importamos Rol para asignar rol por defecto
 
 # Creamos el Blueprint de autenticación
 auth_routes = Blueprint('auth', __name__)
@@ -26,11 +27,21 @@ def registro():
             flash("El correo ya está registrado", "danger")
             return redirect(url_for('auth.registro'))
 
-        # Creamos nuevo usuario
+        # Buscamos (o creamos) el rol por defecto "Usuario".
+        # Así, cada registro normal queda con rol Usuario automáticamente.
+        rol_usuario = Rol.query.filter(db.func.lower(Rol.nombre) == "usuario").first()
+
+        if not rol_usuario:
+            rol_usuario = Rol(nombre="Usuario")
+            db.session.add(rol_usuario)
+            db.session.flush()  # obtenemos rol_usuario.ROL_ID antes del commit
+
+        # Creamos nuevo usuario con rol por defecto
         nuevo_usuario = Usuario(
             nombre=nombre,
             correo=correo,
-            password=password  # Luego encriptaremos
+            password=password,  # Luego encriptaremos
+            ROL_ID=rol_usuario.ROL_ID
         )
 
         # Guardamos en la base de datos
