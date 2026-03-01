@@ -21,6 +21,8 @@
         <td>{{ p.fecha_devolucion }}</td>
         <td>
             <a href="{{ url_for('admin_routes.eliminar_prestamo', id=p.PRESTAMO_ID) }}">Eliminar</a>
+
+            <a href="{{ url_for('admin_routes.editar_prestamo', id=p.PRESTAMO_ID) }}">Editar</a>
         </td>
     </tr>
     {% endfor %}

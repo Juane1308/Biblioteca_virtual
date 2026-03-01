@@ -1,0 +1,27 @@
+<h2>Editar Usuario</h2>
+
+<form method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" value="{{ usuario.nombre }}" required><br><br>
+
+    <label>Correo:</label>
+    <input type="email" name="correo" value="{{ usuario.correo }}" required><br><br>
+
+    <label>Password (dejar vacío para no cambiar):</label>
+    <input type="password" name="password"><br><br>
+
+    <label>Rol:</label>
+    <select name="rol_id">
+        <option value="">Sin Rol</option>
+        {% for rol in roles %}
+        <option value="{{ rol.ROL_ID }}" {% if usuario.ROL_ID == rol.ROL_ID %}selected{% endif %}>
+            {{ rol.nombre }}
+        </option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<br>
+<a href="{{ url_for('admin_routes.listar_usuarios') }}">Volver</a>

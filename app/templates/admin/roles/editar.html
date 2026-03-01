@@ -1,0 +1,11 @@
+<h2>Editar Rol</h2>
+
+<form method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" value="{{ rol.nombre }}" required><br><br>
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<br>
+<a href="{{ url_for('admin_routes.listar_roles') }}">Volver</a>

@@ -1,0 +1,35 @@
+<h2>Editar Prestamo</h2>
+
+<form method="POST">
+
+    <label>Usuario:</label>
+    <select name="usuario_id">
+        {% for u in usuarios %}
+        <option value="{{ u.id }}" {% if u.id == prestamo.USUARIO_ID %}selected{% endif %}>{{ u.nombre }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Libro:</label>
+    <select name="libro_id">
+        {% for l in libros %}
+        <option value="{{ l.LIBRO_ID }}" {% if l.LIBRO_ID == prestamo.LIBRO_ID %}selected{% endif %}>{{ l.titulo }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Fecha Prestamo:</label>
+    <input type="date" name="fecha_prestamo" value="{{ prestamo.fecha_prestamo.strftime('%Y-%m-%d') if prestamo.fecha_prestamo else '' }}" required><br><br>
+
+    <label>Fecha Devolucion:</label>
+    <input type="date" name="fecha_devolucion" value="{{ prestamo.fecha_devolucion.strftime('%Y-%m-%d') if prestamo.fecha_devolucion else '' }}" required><br><br>
+
+    <label>Estado:</label>
+    <select name="estado">
+        <option value="1" {% if prestamo.estado %}selected{% endif %}>Activo</option>
+        <option value="0" {% if not prestamo.estado %}selected{% endif %}>Inactivo</option>
+    </select><br><br>
+
+    <button type="submit">Actualizar</button>
+</form>
+
+<br>
+<a href="{{ url_for('admin_routes.listar_prestamos') }}">Volver</a>
