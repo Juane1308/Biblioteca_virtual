@@ -1,16 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Biblioteca Virtual</title>
-</head>
-<body>
-    <h1>📚 Bienvenido a la Biblioteca Virtual</h1>
+<!-- PAGINA DE INICIO (la primera que sale al entrar a la biblioteca) -->
+{% extends "base.html" %}
 
-    <p>Gestiona usuarios, libros y préstamos.</p>
+{% block title %}Home{% endblock %}
 
-    <a href="{{ url_for('auth.registro') }}">
-        <button>Registrarse</button>
-    </a>
+{% block content %}
 
-</body>
-</html>
+<h2>Bienvenido a la Biblioteca Virtual</h2>
+
+<p>Gestiona usuarios, libros y préstamos.</p>
+
+<a href="{{ url_for('auth.registro') }}">
+    <button>Sign Up</button>
+</a>
+
+<a href="{{ url_for('auth.login') }}">
+    <button>Log In</button>
+</a>
+
+{% endblock %}
+

@@ -21,6 +21,10 @@ def create_app():
     # Inicializamos las extensiones con la app
     db.init_app(app)
     login_manager.init_app(app)
+
+    # Si alguien intenta acceder a una ruta protegida
+    # sin estar autenticado, lo redirige a login
+    login_manager.login_view = "auth.login"
     
     # *** IMPORTACIÓN DE BLUEPRINTS ***
     # Traemos las rutas principales y las de autenticación (login)
@@ -42,6 +46,6 @@ def create_app():
         from app.models.rol import Rol
 
         # Crea el archivo .db con todas las tablas si no existe
-        db.create_all()
+        db.create_all() 
 
     return app

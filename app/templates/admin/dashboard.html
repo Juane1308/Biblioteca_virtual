@@ -1,9 +1,17 @@
-<h1>Panel Administración</h1>
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<h2>Panel Administración</h2>
 
 <ul>
     <li><a href="{{ url_for('admin_routes.listar_autores') }}">Autores</a></li>
     <li><a href="{{ url_for('admin_routes.listar_libros') }}">Libros</a></li>
     <li><a href="{{ url_for('admin_routes.listar_usuarios') }}">Usuarios</a></li>
     <li><a href="{{ url_for('admin_routes.listar_roles') }}">Roles</a></li>
-    <li><a href="{{ url_for('admin_routes.listar_prestamos') }}">Prestamos</a></li>
+    <li><a href="{{ url_for('admin_routes.listar_prestamos') }}">Préstamos</a></li>
 </ul>
+
+{% endblock %}

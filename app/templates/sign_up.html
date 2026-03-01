@@ -1,3 +1,5 @@
+<!-- PAGINA DE SIG-UP (para registrarse por primera vez)-->
+
 {% extends "base.html" %}
 
 {% block title %}Registro{% endblock %}
@@ -19,6 +21,8 @@
     <input type="password" name="password" id="password" required><br><br>
 
     <button type="submit">Registrarse</button>
+
+    <a href="{{ url_for('auth.login') }}">Already have an account?</a>
 
 </form>
 

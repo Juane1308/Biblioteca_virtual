@@ -1,4 +1,4 @@
-from app import db
+from app import db #Importo la base de datos para definir el modelo de Autor
 
 class Autor(db.Model):
     __tablename__ = 'autor'

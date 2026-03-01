@@ -1,0 +1,17 @@
+<!-- PAGINA MAIN (El cuerpo de la biblioteca)-->
+
+{% extends "base.html" %}
+
+{% block title %}Main{% endblock %}
+
+{% block content %}
+
+<h2>Welcome {{ current_user.nombre }}</h2>
+
+<h3>Aquí irán todos los libros 📚</h3>
+
+<a href="{{ url_for('auth.logout') }}">
+    <button>Logout</button>
+</a>
+
+{% endblock %}
