@@ -1,0 +1,25 @@
+<h2>Lista de Autores</h2>
+
+<a href="{{ url_for('admin_routes.crear_autor') }}">Crear Autor</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Nacionalidad</th>
+        <th>Fecha Nacimiento</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for autor in autores %}
+    <tr>
+        <td>{{ autor.AUTOR_ID }}</td>
+        <td>{{ autor.nombre }}</td>
+        <td>{{ autor.nacionalidad }}</td>
+        <td>{{ autor.fecha_nacimiento }}</td>
+        <td>
+            <a href="{{ url_for('admin_routes.eliminar_autor', id=autor.AUTOR_ID) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

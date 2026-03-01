@@ -1,0 +1,31 @@
+<h2>Usuarios</h2>
+
+<a href="{{ url_for('admin_routes.crear_usuario') }}">Crear Usuario</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for u in usuarios %}
+    <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.nombre }}</td>
+        <td>{{ u.correo }}</td>
+        <td>
+            {% if u.rol %}
+            {{ u.rol.nombre }}
+            {% else %}
+            Sin Rol
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('admin_routes.eliminar_usuario', id=u.id) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

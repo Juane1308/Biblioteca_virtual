@@ -1,4 +1,15 @@
+# Entorno virtual
 venv/
+
+# Archivos de Python
 __pycache__/
 *.pyc
-biblioteca.db
+
+# Base de datos
+*.db
+
+# Visual Studio
+.vs/
+
+# Archivos del sistema
+.DS_Store

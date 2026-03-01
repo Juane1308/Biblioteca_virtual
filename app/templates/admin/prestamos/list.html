@@ -1,0 +1,27 @@
+<h2>Prestamos</h2>
+
+<a href="{{ url_for('admin_routes.crear_prestamo') }}">Crear Prestamo</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Usuario</th>
+        <th>Libro</th>
+        <th>Fecha Prestamo</th>
+        <th>Fecha Devolucion</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for p in prestamos %}
+    <tr>
+        <td>{{ p.PRESTAMO_ID }}</td>
+        <td>{{ p.usuario.nombre }}</td>
+        <td>{{ p.libro.titulo }}</td>
+        <td>{{ p.fecha_prestamo }}</td>
+        <td>{{ p.fecha_devolucion }}</td>
+        <td>
+            <a href="{{ url_for('admin_routes.eliminar_prestamo', id=p.PRESTAMO_ID) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

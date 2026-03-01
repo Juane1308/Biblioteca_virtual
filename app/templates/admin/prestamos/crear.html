@@ -1,0 +1,26 @@
+<h2>Crear Prestamo</h2>
+
+<form method="POST">
+
+    <label>Usuario:</label>
+    <select name="usuario_id">
+        {% for u in usuarios %}
+        <option value="{{ u.id }}">{{ u.nombre }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Libro:</label>
+    <select name="libro_id">
+        {% for l in libros %}
+        <option value="{{ l.LIBRO_ID }}">{{ l.titulo }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <label>Fecha Prestamo:</label>
+    <input type="date" name="fecha_prestamo" required><br><br>
+
+    <label>Fecha Devolucion:</label>
+    <input type="date" name="fecha_devolucion" required><br><br>
+
+    <button type="submit">Guardar</button>
+</form>

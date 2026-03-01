@@ -1,0 +1,21 @@
+<h2>Roles</h2>
+
+<a href="{{ url_for('admin_routes.crear_rol') }}">Crear Rol</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for rol in roles %}
+    <tr>
+        <td>{{ rol.ROL_ID }}</td>
+        <td>{{ rol.nombre }}</td>
+        <td>
+            <a href="{{ url_for('admin_routes.eliminar_rol', id=rol.ROL_ID) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

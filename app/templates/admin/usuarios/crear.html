@@ -1,0 +1,23 @@
+<h2>Crear Usuario</h2>
+
+<form method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Correo:</label>
+    <input type="email" name="correo" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" required><br><br>
+
+    <label>Rol:</label>
+    <select name="rol_id">
+        {% for rol in roles %}
+        <option value="{{ rol.ROL_ID }}">
+            {{ rol.nombre }}
+        </option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Guardar</button>
+</form>

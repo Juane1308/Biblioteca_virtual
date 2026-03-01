@@ -1,0 +1,25 @@
+<h2>Libros</h2>
+
+<a href="{{ url_for('admin_routes.crear_libro') }}">Crear Libro</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>ISBN</th>
+        <th>Autor</th>
+        <th>Acciones</th>
+    </tr>
+
+    {% for libro in libros %}
+    <tr>
+        <td>{{ libro.LIBRO_ID }}</td>
+        <td>{{ libro.titulo }}</td>
+        <td>{{ libro.isbn }}</td>
+        <td>{{ libro.autor.nombre }}</td>
+        <td>
+            <a href="{{ url_for('admin_routes.eliminar_libro', id=libro.LIBRO_ID) }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
