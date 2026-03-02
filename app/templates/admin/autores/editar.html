@@ -1,0 +1,16 @@
+<h2>Editar Autor</h2>
+
+<form method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" value="{{ autor.nombre }}" required><br><br>
+
+    <label>Nacionalidad:</label>
+    <input type="text" name="nacionalidad" value="{{ autor.nacionalidad or '' }}"><br><br>
+
+    <label>Fecha Nacimiento:</label>
+    <input type="date" name="fecha"
+           value="{{ autor.fecha_nacimiento.strftime('%Y-%m-%d') if autor.fecha_nacimiento else '' }}"
+           required><br><br>
+
+    <button type="submit">Guardar cambios</button>
+</form>

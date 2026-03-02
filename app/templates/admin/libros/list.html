@@ -18,6 +18,7 @@
         <td>{{ libro.isbn }}</td>
         <td>{{ libro.autor.nombre }}</td>
         <td>
+            <a href="{{ url_for('admin_routes.editar_libro', id=libro.LIBRO_ID) }}">Editar</a> |
             <a href="{{ url_for('admin_routes.eliminar_libro', id=libro.LIBRO_ID) }}">Eliminar</a>
         </td>
     </tr>

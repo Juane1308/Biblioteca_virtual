@@ -18,6 +18,7 @@
         <td>{{ autor.nacionalidad }}</td>
         <td>{{ autor.fecha_nacimiento }}</td>
         <td>
+            <a href="{{ url_for('admin_routes.editar_autor', id=autor.AUTOR_ID) }}">Editar</a> |
             <a href="{{ url_for('admin_routes.eliminar_autor', id=autor.AUTOR_ID) }}">Eliminar</a>
         </td>
     </tr>

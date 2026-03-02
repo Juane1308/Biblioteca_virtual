@@ -7,6 +7,10 @@
 {% block content %}
 
 <h2>Welcome {{ current_user.nombre }}</h2>
+{% if current_user.is_authenticated and current_user.rol and current_user.rol.nombre and current_user.rol.nombre|lower == 'admin' %}
+  <a href="{{ url_for('admin_routes.dashboard') }}"><button>Panel Admin</button></a>
+{% endif %}
+
 
 <h3>Libros disponibles 📚</h3>
 

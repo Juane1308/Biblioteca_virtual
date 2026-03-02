@@ -24,6 +24,7 @@
             {% endif %}
         </td>
         <td>
+            <a href="{{ url_for('admin_routes.editar_usuario', id=u.id) }}">Editar</a> |
             <a href="{{ url_for('admin_routes.eliminar_usuario', id=u.id) }}">Eliminar</a>
         </td>
     </tr>

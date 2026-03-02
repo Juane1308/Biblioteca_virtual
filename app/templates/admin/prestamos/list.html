@@ -20,6 +20,7 @@
         <td>{{ p.fecha_prestamo }}</td>
         <td>{{ p.fecha_devolucion }}</td>
         <td>
+            <a href="{{ url_for('admin_routes.editar_prestamo', id=p.PRESTAMO_ID) }}">Editar</a> |
             <a href="{{ url_for('admin_routes.eliminar_prestamo', id=p.PRESTAMO_ID) }}">Eliminar</a>
         </td>
     </tr>

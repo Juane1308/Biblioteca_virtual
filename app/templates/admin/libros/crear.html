@@ -12,7 +12,7 @@
     <h3>Seleccionar Autor Existente</h3>
 
     <select name="autor_id">
-        <option value="">-- Seleccione un autor --</option>
+        <option value="{{ autor_desconocido_id }}">(Desconocido / Sin autor)</option>
         {% for autor in autores %}
         <option value="{{ autor.AUTOR_ID }}">
             {{ autor.nombre }}
