@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle Libro{% endblock %}
+
+{% block content %}
+
+<h2>{{ libro.titulo }}</h2>
+
+<div style="display: flex; gap: 40px;">
+
+    <!-- Imagen grande -->
+    <div>
+        {% if libro.imagen %}
+            <img src="{{ url_for('static', filename='img/' + libro.imagen) }}" width="300">
+        {% endif %}
+    </div>
+
+    <!-- Ficha técnica -->
+    <div>
+        <p><strong>Autor:</strong> {{ libro.autor.nombre }}</p>
+        <p><strong>Género:</strong> {{ libro.genero }}</p>
+        <p><strong>ISBN:</strong> {{ libro.isbn }}</p>
+
+        <p>
+            <strong>Disponibilidad:</strong>
+            {% if libro.disponible %}
+                Disponible ✅
+            {% else %}
+                No disponible ❌
+            {% endif %}
+        </p>
+
+        <hr>
+
+        <h4>Descripción</h4>
+        <p>{{ libro.descripcion }}</p>
+
+    </div>
+
+</div>
+
+<br>
+<a href="{{ url_for('main.principal') }}">Volver</a>
+
+{% endblock %}

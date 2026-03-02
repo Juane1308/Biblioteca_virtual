@@ -53,27 +53,56 @@ def eliminar_autor(id):
 # ====================== LIBRO =====================
 # ==================================================
 
+# Listar libros con su autor
 @admin_routes.route("/libros")
 def listar_libros():
     libros = Libro.query.all()
     return render_template("libros/list.html", libros=libros)
 
+#crear libro con opción a crear autor nuevo si no existe
 @admin_routes.route("/libros/crear", methods=["GET","POST"])
 def crear_libro():
     autores = Autor.query.all()
 
     if request.method == "POST":
-        nuevo = Libro(
+
+        autor_id = request.form.get("autor_id")
+        nuevo_autor_nombre = request.form.get("nuevo_autor_nombre")
+
+        # Si escribió un nuevo autor, lo creamos
+        if nuevo_autor_nombre:
+            nuevo_autor = Autor(
+                nombre=nuevo_autor_nombre,
+                nacionalidad=request.form.get("nuevo_autor_nacionalidad"),
+                fecha_nacimiento=datetime.strptime(
+                    request.form.get("nuevo_autor_fecha"),
+                    "%Y-%m-%d"
+                ) if request.form.get("nuevo_autor_fecha") else None
+            )
+
+            db.session.add(nuevo_autor)
+            db.session.commit()
+
+            autor_id = nuevo_autor.AUTOR_ID
+
+        # Validación: debe existir un autor
+        if not autor_id:
+            return "Debe seleccionar o crear un autor"
+
+        nuevo_libro = Libro(
             titulo=request.form["titulo"],
             isbn=request.form["isbn"],
-            AUTOR_ID=request.form["autor_id"]
+            AUTOR_ID=autor_id
         )
-        db.session.add(nuevo)
+
+        db.session.add(nuevo_libro)
         db.session.commit()
+
         return redirect(url_for("admin_routes.listar_libros"))
 
     return render_template("libros/crear.html", autores=autores)
 
+# Eliminar libro
 @admin_routes.route("/libros/eliminar/<int:id>")
 def eliminar_libro(id):
     libro = Libro.query.get_or_404(id)

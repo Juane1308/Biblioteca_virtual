@@ -14,6 +14,7 @@ def load_user(user_id):
     # user_id llega como string, lo convertimos a int para la consulta
     return Usuario.query.get(int(user_id))
 
+# Función para crear la aplicación Flask
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)

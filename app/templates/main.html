@@ -8,8 +8,34 @@
 
 <h2>Welcome {{ current_user.nombre }}</h2>
 
-<h3>Aquí irán todos los libros 📚</h3>
+<h3>Libros disponibles 📚</h3>
 
+{% if libros %}
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        
+        {% for book in libros %}
+            <a href="{{ url_for('main.book_detail', libro_id=book.LIBRO_ID) }}" 
+                style="text-decoration: none; color: inherit;">
+            
+                <div style="border: 1px solid #ccc; padding: 10px; width: 200px; cursor: pointer;">
+                    
+                    {% if book.imagen %}
+                        <img src="{{ url_for('static', filename='img/' + book.imagen) }}" width="150">
+                    {% endif %}
+
+                    <h4>{{ book.titulo }}</h4>
+                    <p>{{ book.autor.nombre }}</p>
+
+                </div>
+            </a>
+         {% endfor %}
+
+    </div>
+{% else %}
+    <p>No hay libros registrados.</p>
+{% endif %}
+
+<br>
 <a href="{{ url_for('auth.logout') }}">
     <button>Logout</button>
 </a>
